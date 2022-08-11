@@ -39,8 +39,8 @@ class WarmestElementTest {
   @Test
   void remove() {
     // test if remove works
-    assertEquals("hello", warmest.remove(1));
+    assertEquals("warmest", warmest.remove(2));
     // test if remove unsets warmest element
-    assertEquals("warmest", warmest.getWarmest());
+    assertEquals("hello", warmest.getWarmest());
   }
 }
