@@ -1,26 +1,25 @@
 package github.assignments;
 
-import java.util.HashMap;
-import java.util.LinkedList;
+import org.apache.commons.collections4.map.LinkedMap;
 
 public class WarmestElement<K, V> {
 
-  private final HashMap<K, V> elementsMap = new HashMap<>();
-  private final LinkedList<K> warm = new LinkedList<>();
+  private final LinkedMap<K, V> elementsMap = new LinkedMap<>();
 
   private void warmElement(K key) {
-    // O(n)
-    warm.remove(key);
     // O(1)
-    warm.addFirst(key);
+    V value = elementsMap.remove(key);
+    // O(1)
+    elementsMap.put(key, value);
   }
 
+  // O(1)
   void put(K key, V value) {
     warmElement(key);
     elementsMap.put(key, value);
   }
 
-
+  // O(1)
   V get(K key) {
     V value = elementsMap.get(key);
     if (value != null) {
@@ -29,14 +28,13 @@ public class WarmestElement<K, V> {
     return value;
   }
 
-
+  // O(1)
   V remove(K key) {
-    warm.remove(key);
     return elementsMap.remove(key);
   }
 
   // O(1)
   V getWarmest() {
-    return elementsMap.get(warm.getFirst());
+    return elementsMap.get(elementsMap.lastKey());
   }
 }
