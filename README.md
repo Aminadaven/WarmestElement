@@ -4,4 +4,4 @@ Big O:
 
 getWarmest - O(1)
 
-all the rest - O(n), due to removal of the warmest element, which requires a traversal of the list.
+all the rest - O(1) - because we migrated to LinkedMap.
